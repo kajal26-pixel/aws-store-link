@@ -21,9 +21,8 @@ const s3upload=async(file)=>{
         let loc= (loc1).replace(' ','-')
         //console.log(loc)
         var param={
-            Bucket:BUCKET_NAME,
-            //Key:`${file.originalname}`, 
-            Key:`${loc}`, //-${uuid()}
+            Bucket:BUCKET_NAME, 
+            Key:`${loc}`, 
             Body:file.buffer
         }
         
@@ -32,15 +31,8 @@ const s3upload=async(file)=>{
         .then((data)=>{     
             let name=data.Key
             //console.log(data.Location)
-
-            //let loc= (data.Location).replace('%20','-')
-
-            //let titles =`${(payload.title).replace(/ /g,'-')}`
-            //let titles =`${(data.Location).replace(-*,'-')}`
             let titles= name.substring(0,name.indexOf('.'));
-            //let titles= param.Key.substring(0,param.Key.indexOf('-'));
             var newimage=new Model({
-                //image:data.Location
                 title:titles,
                 image:data.Location
             })
